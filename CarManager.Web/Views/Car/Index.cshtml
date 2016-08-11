@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CarManager.Web.Models.Cars.CarViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null,new{ @class="btn btn-primary btn-lg" })
+</p>
+<table class="table table-hover table-bordered">
+    <tr class="success">
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>Operate</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ },new{ @class="btn btn-primary" }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ },new{ @class="btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ },new{ @class="btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>

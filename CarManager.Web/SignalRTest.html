@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="Scripts/jquery-1.10.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            function UpdateCpuCounter(cpu) {
+                var cpuP = '<p>' + cpu + '</p>'
+                $('#divCpu').append(cpuP);
+            }
+
+            function connectionHub() {
+                var connection = $.hubConnection();
+                var hubProxy = connection.createHubProxy('MessageHub');
+                hubProxy.on('SendMessage', function (data) {
+                    UpdateCpuCounter(data);
+                });
+                connection.start();
+            }
+
+            connectionHub();
+        });
+    </script>
+</head>
+<body>
+    <div id="divCpu" style="width:500px;height:auto;background-color:aliceblue;"></div>
+</body>
+</html>
